@@ -53,11 +53,10 @@ export class AuthService {
     const user = await this.userService.findByPhoneNumber(
       verifyDto.phone_number,
     );
-    if (!user)
-      return new HttpException('User not found!', HttpStatus.NOT_FOUND);
+    if (!user) throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
 
     if (user.verify_code !== verifyDto.verify_code)
-      return new HttpException(
+      throw new HttpException(
         'The verification code is incorrect or has expired!',
         HttpStatus.BAD_REQUEST,
       );
@@ -66,7 +65,7 @@ export class AuthService {
     const expire_at = new Date(user.verify_code_expire_at).getTime();
 
     if (expire_at < now)
-      return new HttpException(
+      throw new HttpException(
         'The verification code is incorrect or has expired!',
         HttpStatus.BAD_REQUEST,
       );

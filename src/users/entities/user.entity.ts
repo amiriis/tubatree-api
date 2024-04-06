@@ -14,18 +14,6 @@ export class Users {
   @Column({ length: 10, unique: true, nullable: false })
   phone_number: string;
 
-  @Column({ nullable: true })
-  first_name: string;
-
-  @Column({ nullable: true })
-  first_name_abjad: number;
-
-  @Column({ nullable: true })
-  mother_name: string;
-
-  @Column({ nullable: true })
-  mother_name_abjad: number;
-
   @Column({ length: 6, nullable: true })
   verify_code: string;
 

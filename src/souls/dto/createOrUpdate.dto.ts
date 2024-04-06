@@ -1,9 +1,13 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UpdateDto {
+export class CreateOrUpdateDto {
   @IsNotEmpty()
   @IsString()
   first_name: string;
+
+  @IsNotEmpty()
+  @IsString()
+  father_name: string;
 
   @IsNotEmpty()
   @IsString()

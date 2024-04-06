@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TubaService } from './tuba/tuba.service';
+import { AllahModule } from './allah/allah.module';
+import { SoulsModule } from './souls/souls.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { TubaService } from './tuba/tuba.service';
     }),
     UsersModule,
     AuthModule,
+    AllahModule,
+    SoulsModule,
   ],
   controllers: [],
   providers: [TubaService],
