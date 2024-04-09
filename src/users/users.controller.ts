@@ -11,7 +11,7 @@ export class UsersController {
   }
 
   @Get(':phone_number')
-  async findByPhoneNumber(@Param('phone_number') phone_number: string) {
-    return await this.usersService.findByPhoneNumber(phone_number);
+  async findByPhoneNumber(@Param('phone_number') phoneNumber: string) {
+    return await this.usersService.findByPhoneNumber(phoneNumber);
   }
 }

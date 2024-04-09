@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Souls } from 'src/souls/entities/soul.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class AllahNames {
@@ -16,4 +17,7 @@ export class AllahNames {
 
   @Column()
   number: number;
+
+  @OneToMany(() => Souls, (soul) => soul.allahName)
+  souls: Souls[];
 }

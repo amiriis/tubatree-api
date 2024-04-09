@@ -17,37 +17,56 @@ export class Souls {
 
   @PrimaryColumn()
   userId: number;
-
   @ManyToOne(() => Users)
   user: Users;
 
   @PrimaryColumn()
   allahNameId: number;
-
   @ManyToOne(() => AllahNames)
   allahName: AllahNames;
 
   @Column({ nullable: true })
-  first_name: string;
+  emamNumber: number;
 
   @Column({ nullable: true })
-  first_name_abjad: number;
+  soulNumber: number;
 
   @Column({ nullable: true })
-  father_name: string;
+  movakelKhas: string;
 
   @Column({ nullable: true })
-  father_name_abjad: number;
+  movakelAum: string;
 
   @Column({ nullable: true })
-  mother_name: string;
+  oun: string;
 
   @Column({ nullable: true })
-  mother_name_abjad: number;
+  jamaliOrJalali: string;
+
+  @Column({ nullable: true })
+  asarAfaghi: string;
+
+  @Column({ nullable: true })
+  firstName: string;
+
+  @Column({ nullable: true })
+  firstNameAbjad: number;
+
+  @Column({ nullable: true })
+  fatherName: string;
+
+  @Column({ nullable: true })
+  fatherNameAbjad: number;
+
+  @Column({ nullable: true })
+  motherName: string;
+
+  @Column({ nullable: true })
+  motherNameAbjad: number;
 
   @CreateDateColumn({ select: false })
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({ select: false })
-  updated_at: Date;
+  updatedAt: Date;
 }

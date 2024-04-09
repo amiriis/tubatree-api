@@ -17,12 +17,12 @@ export class AuthService {
   ) {}
 
   async otp(otpDto: OtpDto) {
-    const user = await this.userService.findByPhoneNumber(otpDto.phone_number);
+    const user = await this.userService.findByPhoneNumber(otpDto.phoneNumber);
     let code: string = null;
     if (user) {
       while (!code) {
         const newCode = this.generateOTP();
-        if (user.verify_code !== newCode) {
+        if (user.verifyCode !== newCode) {
           code = newCode;
           break;
         }
@@ -30,16 +30,16 @@ export class AuthService {
       await this.user_repository.update(
         { id: user.id },
         {
-          verify_code: code,
-          verify_code_expire_at: this.addMinutes(new Date(), 10),
+          verifyCode: code,
+          verifyCodeExpireAt: this.addMinutes(new Date(), 10),
         },
       );
     } else {
       code = this.generateOTP();
       const newUser = this.user_repository.create({
-        phone_number: otpDto.phone_number,
-        verify_code: code,
-        verify_code_expire_at: this.addMinutes(new Date(), 10),
+        phoneNumber: otpDto.phoneNumber,
+        verifyCode: code,
+        verifyCodeExpireAt: this.addMinutes(new Date(), 10),
       });
       await this.user_repository.save(newUser);
     }
@@ -51,18 +51,18 @@ export class AuthService {
 
   async verify(verifyDto: VerifyDto) {
     const user = await this.userService.findByPhoneNumber(
-      verifyDto.phone_number,
+      verifyDto.phoneNumber,
     );
     if (!user) throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
 
-    if (user.verify_code !== verifyDto.verify_code)
+    if (user.verifyCode !== verifyDto.verifyCode)
       throw new HttpException(
         'The verification code is incorrect or has expired!',
         HttpStatus.BAD_REQUEST,
       );
 
     const now = new Date().getTime();
-    const expire_at = new Date(user.verify_code_expire_at).getTime();
+    const expire_at = new Date(user.verifyCodeExpireAt).getTime();
 
     if (expire_at < now)
       throw new HttpException(

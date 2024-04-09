@@ -1,7 +1,9 @@
+import { Souls } from 'src/souls/entities/soul.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,17 +14,20 @@ export class Users {
   id: number;
 
   @Column({ length: 10, unique: true, nullable: false })
-  phone_number: string;
+  phoneNumber: string;
 
   @Column({ length: 6, nullable: true })
-  verify_code: string;
+  verifyCode: string;
 
   @Column({ nullable: true })
-  verify_code_expire_at: Date;
+  verifyCodeExpireAt: Date;
+
+  @OneToMany(() => Souls, (soul) => soul.user)
+  souls: Souls[];
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 }

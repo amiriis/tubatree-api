@@ -3,13 +3,13 @@ import { IsNotEmpty, IsString } from 'class-validator';
 export class CreateOrUpdateDto {
   @IsNotEmpty()
   @IsString()
-  first_name: string;
+  firstName: string;
 
   @IsNotEmpty()
   @IsString()
-  father_name: string;
+  fatherName: string;
 
   @IsNotEmpty()
   @IsString()
-  mother_name: string;
+  motherName: string;
 }

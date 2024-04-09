@@ -14,8 +14,8 @@ export class UsersService {
     return await this.user_repository.find();
   }
 
-  async findByPhoneNumber(phone_number: string) {
-    return await this.user_repository.findOne({ where: { phone_number } });
+  async findByPhoneNumber(phoneNumber: string) {
+    return await this.user_repository.findOne({ where: { phoneNumber } });
   }
 
   async findById(id: number) {
