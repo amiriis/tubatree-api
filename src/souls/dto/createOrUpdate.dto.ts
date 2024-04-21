@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsIn, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateOrUpdateDto {
   @IsNotEmpty()
@@ -12,4 +12,9 @@ export class CreateOrUpdateDto {
   @IsNotEmpty()
   @IsString()
   motherName: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @IsIn(['male', 'female'])
+  gender: string;
 }

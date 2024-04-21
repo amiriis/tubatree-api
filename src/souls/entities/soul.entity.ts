@@ -47,22 +47,37 @@ export class Souls {
   asarAfaghi: string;
 
   @Column({ nullable: true })
+  deyOfWeek: string;
+
+  @Column({ nullable: true })
+  vosat: string;
+
+  @Column({ nullable: true })
+  qarin: string;
+
+  @Column({ nullable: true })
+  tale: string;
+
+  @Column({ nullable: true, select: false })
   firstName: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, select: false })
   firstNameAbjad: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, select: false })
   fatherName: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, select: false })
   fatherNameAbjad: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, select: false })
   motherName: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, select: false })
   motherNameAbjad: number;
+
+  @Column({ nullable: true, select: false })
+  gender: string;
 
   @CreateDateColumn({ select: false })
   createdAt: Date;

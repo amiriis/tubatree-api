@@ -3,7 +3,7 @@ import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class AllahNames {
-  @PrimaryColumn()
+  @PrimaryColumn({ select: false })
   id: number;
 
   @Column()
@@ -15,7 +15,7 @@ export class AllahNames {
   @Column({ type: 'text' })
   interpretation: string;
 
-  @Column()
+  @Column({ select: false })
   number: number;
 
   @OneToMany(() => Souls, (soul) => soul.allahName)

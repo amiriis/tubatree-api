@@ -45,6 +45,10 @@ export class SoulsService {
       nameAbjad + motherAbjad,
     );
 
+    const deyOfWeek = this.tubaService.getDeyOfWeekByEmamNumber(emamNumber);
+    const vosat = this.tubaService.getVosatByEmamNumber(emamNumber);
+    const qarin = this.tubaService.getQarinByEmamNumber(emamNumber);
+
     const movakelKhas = this.tubaService.getMovakelKhasByAbjad(nameAbjad);
     const movakelAum = this.tubaService.getMovakelAumByAbjad(
       nameAbjad + motherAbjad,
@@ -58,44 +62,37 @@ export class SoulsService {
       createOrUpdateDto.firstName,
     );
 
+    const tale = this.tubaService.getTaleByAbjad(nameAbjad + motherAbjad);
+
     const soul = await this.soul_repository.findOne({ where: { userId: id } });
 
+    const data = {
+      allahNameId: allahName.id,
+      emamNumber,
+      soulNumber: nameAbjad + motherAbjad,
+      movakelKhas,
+      movakelAum,
+      oun,
+      jamaliOrJalali,
+      asarAfaghi,
+      deyOfWeek,
+      vosat,
+      qarin,
+      tale,
+      firstName: createOrUpdateDto.firstName,
+      firstNameAbjad: nameAbjad,
+      fatherName: createOrUpdateDto.fatherName,
+      fatherNameAbjad: fatherAbjad,
+      motherName: createOrUpdateDto.motherName,
+      motherNameAbjad: motherAbjad,
+      gender: createOrUpdateDto.gender,
+    };
     if (soul) {
-      await this.soul_repository.update(
-        { id: soul.id },
-        {
-          allahNameId: allahName.id,
-          emamNumber: emamNumber,
-          soulNumber: nameAbjad + motherAbjad,
-          movakelKhas,
-          movakelAum,
-          oun,
-          jamaliOrJalali,
-          asarAfaghi,
-          firstName: createOrUpdateDto.firstName,
-          firstNameAbjad: nameAbjad,
-          fatherName: createOrUpdateDto.fatherName,
-          fatherNameAbjad: fatherAbjad,
-          motherName: createOrUpdateDto.motherName,
-          motherNameAbjad: motherAbjad,
-        },
-      );
+      await this.soul_repository.update({ id: soul.id }, data);
     } else {
       const newSoul = this.soul_repository.create({
         userId: id,
-        allahNameId: allahName.id,
-        emamNumber: emamNumber,
-        soulNumber: nameAbjad + motherAbjad,
-        movakelKhas,
-        movakelAum,
-        oun,
-        jamaliOrJalali,
-        firstName: createOrUpdateDto.firstName,
-        firstNameAbjad: nameAbjad,
-        fatherName: createOrUpdateDto.fatherName,
-        fatherNameAbjad: fatherAbjad,
-        motherName: createOrUpdateDto.motherName,
-        motherNameAbjad: motherAbjad,
+        ...data,
       });
       await this.soul_repository.save(newSoul);
     }

@@ -78,6 +78,67 @@ const badList = ['ب', 'پ', 'و', 'ی', 'ن', 'ص', 'ت', 'ض'];
 const abList = ['ج', 'چ', 'ز', 'ژ', 'ث', 'ظ', 'ک', 'گ', 'س', 'ق'];
 const khakList = ['د', 'خ', 'غ', 'ح', 'ل', 'ع', 'ر'];
 
+const daysOfWeekEmamList = {
+  1: 'یک شنیه',
+  2: 'دو شنیه',
+  3: 'دو شنیه',
+  4: 'سه شنیه',
+  5: 'سه شنیه',
+  6: 'سه شنیه',
+  7: 'چهار شنیه',
+  8: 'چهار شنیه',
+  9: 'چهار شنیه',
+  10: 'چهار شنیه',
+  11: 'پنج شنیه',
+  12: 'جمعه',
+};
+
+const vosatEmamList = {
+  1: 'شکوه حیدری',
+  2: 'حلم حسنی',
+  3: 'شجاعت حسینی',
+  4: 'عبادت سجادی',
+  5: 'مفاخر باقری',
+  6: 'نشانه ای صادقی',
+  7: 'علوم کاظمی',
+  8: 'دلالت های رضوی',
+  9: 'سخای جوادی',
+  10: 'پاکی هادوی',
+  11: 'هیبت عسکری',
+  12: 'نهانیات الهی',
+};
+
+const qarinEmamList = {
+  1: 'همروش',
+  2: 'خنزب',
+  3: 'لاقیس',
+  4: 'هفاف، مطووش (مطرش)',
+  5: 'زکروش',
+  6: 'داسم، قنذر (قفندر',
+  7: 'اعور، زلنبور (رکتبور)، قزح',
+  8: 'زوال، عیثم، رها (ذها)',
+  9: 'طرطبه، مقلاص، ثبر، مذهب، سعالی، ام الصبیان، عارض، حناس',
+  10: 'تمریح، غول، هزع',
+  11: 'ولهان (ولها)مره، رده، لهبا',
+  12: 'ابیض، اقبض، متکون، بلروش',
+};
+
+const taleList = {
+  0: 'حوث',
+  1: 'حمل',
+  2: 'ثور',
+  3: 'جوزا',
+  4: 'سرطان',
+  5: 'اسد',
+  6: 'سنبله',
+  7: 'میزان',
+  8: 'عقرب',
+  9: 'قوس',
+  10: 'جدی',
+  11: 'دلو',
+  12: 'حوث',
+};
+
 @Injectable()
 export class TubaService {
   generateAbjadByName(name: string): number {
@@ -202,5 +263,23 @@ export class TubaService {
       case 3:
         return 'خاک';
     }
+  }
+
+  getDeyOfWeekByEmamNumber(emamNumber: number): string {
+    return daysOfWeekEmamList[emamNumber];
+  }
+
+  getVosatByEmamNumber(emamNumber: number): string {
+    return vosatEmamList[emamNumber];
+  }
+
+  getQarinByEmamNumber(emamNumber: number): string {
+    return qarinEmamList[emamNumber];
+  }
+
+  getTaleByAbjad(abjad: number): string {
+    console.log(abjad % 12);
+
+    return taleList[abjad % 12];
   }
 }
