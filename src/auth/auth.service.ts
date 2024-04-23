@@ -70,6 +70,13 @@ export class AuthService {
         HttpStatus.BAD_REQUEST,
       );
 
+    await this.user_repository.update(
+      { id: user.id },
+      {
+        verifyCodeExpireAt: new Date(),
+      },
+    );
+
     const accessToken = this.jwtService.sign({
       sub: user.id,
     });
